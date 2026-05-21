@@ -1,0 +1,88 @@
+.halo,
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  contain: layout paint;
+  pointer-events: none;
+}
+
+.halo {
+  width: 84px;
+  height: 84px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 1px), rgba(255, 255, 255, 0.22) 50%, transparent calc(50% + 1px)),
+    linear-gradient(0deg, transparent calc(50% - 1px), rgba(255, 255, 255, 0.14) 50%, transparent calc(50% + 1px));
+  mix-blend-mode: difference;
+  transition:
+    border-color 180ms ease,
+    opacity 180ms ease;
+}
+
+:global(html[data-theme='light']) .halo {
+  border-color: rgba(20, 20, 20, 0.18);
+  background:
+    linear-gradient(90deg, transparent calc(50% - 1px), rgba(20, 20, 20, 0.22) 50%, transparent calc(50% + 1px)),
+    linear-gradient(0deg, transparent calc(50% - 1px), rgba(20, 20, 20, 0.14) 50%, transparent calc(50% + 1px));
+  mix-blend-mode: multiply;
+}
+
+:global(html[data-theme='light']) .halo::before,
+:global(html[data-theme='light']) .halo::after {
+  background: rgba(20, 20, 20, 0.38);
+}
+
+:global(html[data-theme='light']) .cursor {
+  border-color: rgba(20, 20, 20, 0.72);
+  background: rgba(20, 20, 20, 0.72);
+  box-shadow: 0 0 1.2rem rgba(20, 20, 20, 0.1);
+  mix-blend-mode: multiply;
+}
+
+.halo::before,
+.halo::after {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 1px;
+  content: '';
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.halo::before {
+  left: -18px;
+}
+
+.halo::after {
+  right: -18px;
+}
+
+.cursor {
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 0 1.2rem rgba(255, 255, 255, 0.18);
+  mix-blend-mode: difference;
+}
+
+.active.halo {
+  border-color: rgba(255, 255, 255, 0.56);
+  opacity: 0.95;
+}
+
+.active.cursor {
+  background: transparent;
+  box-shadow: 0 0 2rem rgba(255, 255, 255, 0.3);
+}
+
+@media (pointer: coarse) {
+  .halo,
+  .cursor {
+    display: none;
+  }
+}

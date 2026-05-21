@@ -1,0 +1,229 @@
+.projects {
+  display: grid;
+  flex: 0 0 auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  width: min(1180px, calc(100% - 2rem));
+  height: min(53vh, 32.5rem);
+  margin: 0 auto;
+}
+
+.project {
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(12rem, 1.05fr) auto;
+  gap: 0.8rem;
+  padding: 0.65rem;
+  overflow: hidden;
+  border: 1px solid var(--border-1);
+  border-radius: 1.35rem;
+  background:
+    linear-gradient(155deg, var(--surface-3), var(--surface-1)),
+    var(--surface-1);
+  box-shadow: var(--shadow-card);
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.project::after {
+  position: absolute;
+  inset: auto 10% 0;
+  height: 1px;
+  content: '';
+  background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
+  transform: translateY(1px) scaleX(0);
+  transition: transform 260ms ease;
+}
+
+.project:hover {
+  transform: scale(1.018) translateY(-0.35rem);
+  border-color: var(--border-2);
+  box-shadow:
+    var(--shadow-card),
+    0 0 2.5rem rgba(255, 255, 255, 0.05);
+}
+
+.project:hover::after {
+  transform: translateY(1px) scaleX(1);
+}
+
+.projectBody {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0 0.45rem 0.55rem;
+  align-content: start;
+}
+
+.count {
+  color: var(--color-faint);
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+}
+
+.project h3 {
+  margin: 0.45rem 0 0.45rem;
+  color: var(--color-strong);
+  font-size: clamp(1.05rem, 1.45vw, 1.25rem);
+  line-height: 1.05;
+}
+
+.project p {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  line-height: 1.42;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.tags span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.42rem 0.58rem;
+  border: 1px solid var(--border-1);
+  border-radius: 999px;
+  color: var(--color-soft);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  background: var(--surface-1);
+}
+
+.projectLink {
+  justify-self: start;
+  color: var(--color-strong);
+  font-size: 0.76rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.projectLink::after {
+  display: inline-block;
+  margin-left: 0.55rem;
+  content: '↗';
+  transition: transform 180ms ease;
+}
+
+.project:hover .projectLink::after {
+  transform: translate(3px, -3px);
+}
+
+:global(html[data-theme='light']) .project {
+  box-shadow:
+    0 1.2rem 2.6rem rgba(43, 43, 43, 0.13),
+    0 3.8rem 7rem rgba(67, 67, 67, 0.14),
+    0 0 4.5rem rgba(255, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+@media (max-width: 980px) {
+  .projects {
+    grid-template-columns: 1fr;
+    height: auto;
+    max-height: none;
+    gap: 0.75rem;
+  }
+
+  .project {
+    grid-template-rows: auto auto;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 900px) {
+  .projects {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.55rem;
+    height: min(47vh, 26.5rem);
+  }
+
+  .project {
+    grid-template-rows: minmax(9rem, 0.82fr) minmax(0, 1fr);
+    gap: 0.55rem;
+    padding: 0.5rem;
+  }
+
+  .projectBody {
+    gap: 0.52rem;
+    padding: 0 0.25rem 0.35rem;
+  }
+
+  .project p {
+    font-size: 0.78rem;
+    -webkit-line-clamp: 3;
+  }
+
+  .tags span {
+    padding: 0.28rem 0.38rem;
+    font-size: 0.55rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .tags {
+    justify-content: center;
+  }
+
+  .projects {
+    gap: 0.7rem;
+  }
+
+  .project {
+    gap: 0.65rem;
+    padding: 0.55rem;
+    border-radius: 1.1rem;
+  }
+
+  .projectBody {
+    gap: 0.62rem;
+    padding: 0 0.35rem 0.45rem;
+  }
+
+  .project p {
+    -webkit-line-clamp: 3;
+  }
+}
+
+@media (max-height: 780px) and (min-width: 721px) {
+  .projects {
+    height: min(47vh, 26.5rem);
+    gap: 0.58rem;
+  }
+
+  .project {
+    gap: 0.55rem;
+    padding: 0.55rem;
+  }
+
+  .project p {
+    font-size: 0.82rem;
+  }
+
+  .tags span {
+    padding: 0.34rem 0.46rem;
+    font-size: 0.62rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .projects {
+    width: min(100% - 1rem, 1180px);
+  }
+}

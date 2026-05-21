@@ -1,0 +1,32 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  gap: 1.2rem;
+  place-content: center;
+  background: var(--color-bg);
+}
+
+.mark {
+  display: grid;
+  width: 5rem;
+  height: 5rem;
+  place-items: center;
+  border: 1px solid var(--border-1);
+  border-radius: 999px;
+  color: var(--color-strong);
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    var(--shadow-card);
+  background: radial-gradient(circle at 50% 0, var(--surface-3), var(--surface-1));
+}
+
+.line {
+  width: 9rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
+  transform-origin: left;
+}

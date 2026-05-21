@@ -1,0 +1,104 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.25rem;
+  padding: 0 1.25rem;
+  overflow: hidden;
+  border: 1px solid var(--border-1);
+  border-radius: 999px;
+  color: var(--color-strong);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  isolation: isolate;
+  box-shadow: var(--shadow-card);
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    color 220ms ease;
+}
+
+.button::before {
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  border-radius: inherit;
+  content: '';
+  background: linear-gradient(135deg, var(--surface-3), var(--surface-1));
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+
+.button::after {
+  position: absolute;
+  inset: auto 14% 0;
+  height: 1px;
+  content: '';
+  background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
+  transform: translateX(-120%);
+}
+
+.button:hover {
+  border-color: var(--border-2);
+  box-shadow:
+    var(--shadow-card),
+    0 0 2.5rem rgba(255, 255, 255, 0.08);
+}
+
+.button:hover::before {
+  opacity: 1;
+}
+
+.button:hover::after {
+  animation: lineSweep 760ms ease forwards;
+}
+
+.primary {
+  background: var(--button-primary-bg);
+  color: var(--button-primary-text);
+}
+
+.secondary {
+  background: var(--button-secondary-bg);
+  backdrop-filter: blur(16px);
+}
+
+:global(html[data-theme='light']) .button {
+  border-color: rgba(255, 255, 255, 0.38);
+  box-shadow:
+    0 1rem 2.2rem rgba(24, 24, 24, 0.14),
+    0 0 3.4rem rgba(255, 255, 255, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78);
+}
+
+:global(html[data-theme='light']) .primary {
+  background:
+    linear-gradient(145deg, #232323, #0f0f0f);
+  color: #f5f3ea;
+  box-shadow:
+    0 1rem 2.4rem rgba(17, 17, 17, 0.28),
+    0 0 2.8rem rgba(255, 255, 255, 0.18);
+}
+
+:global(html[data-theme='light']) .secondary {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.64), rgba(218, 218, 210, 0.36));
+  color: #151515;
+}
+
+@keyframes lineSweep {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@media (max-width: 520px) {
+  .button {
+    width: 100%;
+  }
+}

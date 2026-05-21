@@ -1,0 +1,220 @@
+.page {
+  position: relative;
+  z-index: 1;
+  width: 100vw;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.scroller {
+  position: relative;
+  display: flex;
+  width: 100vw;
+  height: 100svh;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-padding: 0;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  touch-action: pan-x;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.sideNav {
+  position: fixed;
+  top: 50%;
+  left: clamp(0.45rem, 1.05vw, 1.15rem);
+  z-index: 24;
+  display: grid;
+  gap: 0.6rem;
+  transform: translateY(-50%);
+}
+
+.sideNav button {
+  position: relative;
+  width: 2.18rem;
+  height: 2.18rem;
+  border: 1px solid var(--border-1);
+  border-radius: 999px;
+  color: var(--color-faint);
+  font: inherit;
+  font-size: 0.66rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  background: var(--surface-1);
+  backdrop-filter: blur(18px);
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.sideNav button::after {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 0.36rem);
+  width: 0.95rem;
+  height: 1px;
+  content: '';
+  background: var(--line-strong);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease;
+}
+
+:global(html[data-theme='light']) .sideNav button {
+  border-color: rgba(255, 255, 255, 0.34);
+  background:
+    radial-gradient(circle at 50% 0, rgba(255, 255, 255, 0.74), rgba(210, 210, 204, 0.28));
+  box-shadow:
+    0 0.8rem 1.8rem rgba(36, 36, 36, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78);
+}
+
+:global(html[data-theme='light']) .sideNav .activeScene {
+  background: #151515;
+  color: #f4f2ea;
+  box-shadow:
+    0 1rem 2.2rem rgba(16, 16, 16, 0.28),
+    0 0 2.4rem rgba(255, 255, 255, 0.22);
+}
+
+.sideNav button:hover,
+.sideNav .activeScene {
+  color: var(--color-strong);
+  border-color: var(--border-2);
+  background: var(--surface-2);
+  transform: translateX(0.25rem);
+}
+
+.sideNav .activeScene::after {
+  transform: scaleX(1);
+}
+
+.progress {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 25;
+  height: 2px;
+  background: var(--line-soft);
+}
+
+.progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--line-strong), var(--line-soft));
+  transform-origin: left;
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scrollHint {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1.2rem, 3vw, 2rem);
+  z-index: 24;
+  display: inline-flex;
+  gap: 0.75rem;
+  align-items: center;
+  color: var(--color-faint);
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+}
+
+.scrollHint i {
+  display: block;
+  width: 3.2rem;
+  height: 1px;
+  overflow: hidden;
+  background: var(--line-soft);
+}
+
+.scrollHint i::after {
+  display: block;
+  width: 1.4rem;
+  height: 100%;
+  content: '';
+  background: var(--line-strong);
+  animation: hintMove 1.6s ease-in-out infinite;
+}
+
+@keyframes hintMove {
+  0% {
+    transform: translateX(-1.4rem);
+  }
+
+  100% {
+    transform: translateX(3.2rem);
+  }
+}
+
+@media (max-width: 900px) {
+  .page {
+    height: auto;
+    min-height: 100svh;
+    overflow: visible;
+  }
+
+  .scroller {
+    display: block;
+    height: 100svh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+    touch-action: pan-y;
+  }
+
+  .sideNav {
+    top: auto;
+    right: 1rem;
+    bottom: 4.3rem;
+    left: auto;
+    display: flex;
+    transform: none;
+  }
+
+  .sideNav button {
+    width: 1.95rem;
+    height: 1.95rem;
+    font-size: 0;
+  }
+
+  .sideNav button::before {
+    position: absolute;
+    inset: 0.7rem;
+    border-radius: 999px;
+    content: '';
+    background: currentColor;
+  }
+
+  .sideNav button::after {
+    display: none;
+  }
+
+  .scrollHint {
+    display: none;
+  }
+}
+
+@media (pointer: coarse) {
+  .scroller {
+    display: block;
+    height: 100svh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+    touch-action: pan-y;
+  }
+}

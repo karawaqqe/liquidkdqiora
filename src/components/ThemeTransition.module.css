@@ -1,0 +1,44 @@
+.transition {
+  position: fixed;
+  inset: 0;
+  z-index: 88;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateZ(0);
+  will-change: opacity;
+  animation: themeFade 640ms cubic-bezier(0.2, 0.8, 0.18, 1) forwards;
+}
+
+.toLight {
+  background:
+    radial-gradient(circle at var(--theme-x) var(--theme-y), rgba(255, 255, 255, 0.5), transparent 30rem),
+    radial-gradient(circle at 50% 45%, rgba(245, 245, 238, 0.14), transparent 48rem),
+    rgba(245, 245, 240, 0.08);
+}
+
+.toDark {
+  background:
+    radial-gradient(circle at var(--theme-x) var(--theme-y), rgba(18, 18, 19, 0.48), transparent 30rem),
+    radial-gradient(circle at 50% 45%, rgba(8, 8, 9, 0.16), transparent 48rem),
+    rgba(0, 0, 0, 0.1);
+}
+
+@keyframes themeFade {
+  0% {
+    opacity: 0;
+  }
+
+  22% {
+    opacity: 0.82;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .transition {
+    animation-duration: 1ms;
+  }
+}
