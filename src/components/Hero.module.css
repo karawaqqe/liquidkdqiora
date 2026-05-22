@@ -360,6 +360,33 @@
   transform: rotate(10deg);
 }
 
+@media (min-width: 1981px) and (min-height: 840px) {
+  .hero {
+    grid-template-columns: minmax(0, 0.98fr) minmax(520px, 0.88fr);
+    gap: clamp(3rem, 5vw, 5.4rem);
+    padding-right: max(3.5rem, calc((100vw - 1500px) / 2));
+    padding-left: max(7.5rem, calc((100vw - 1500px) / 2));
+  }
+
+  .visualWrap,
+  .profileCard {
+    min-height: min(38rem, 68vh);
+  }
+
+  .avatar {
+    min-height: min(23rem, 42vh);
+  }
+
+  .cardMeta {
+    padding: 1.25rem 0.55rem 0.35rem;
+  }
+
+  .cardMeta h2 {
+    max-width: 22rem;
+    font-size: clamp(1.55rem, 1.55vw, 2.35rem);
+  }
+}
+
 @keyframes lineGlow {
   0%,
   100% {

@@ -191,6 +191,16 @@
   padding: 0 0.95rem;
 }
 
+.form option {
+  color: #171717;
+  background: #f2f2ef;
+}
+
+.form option:checked {
+  color: #f4f4f1;
+  background: #1d1d1d;
+}
+
 .form textarea {
   min-height: 8.2rem;
   resize: vertical;
