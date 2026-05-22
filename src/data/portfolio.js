@@ -11,19 +11,4 @@ export const skillItems = [
   'UI/UX',
 ]
 
-export const projectVisuals = {
-  luxecoat: {
-    className: 'luxecoat',
-    metrics: ['Detailing', 'Wrocław', 'Premium'],
-  },
-  marshmallows: {
-    className: 'marshmallows',
-    metrics: ['Sweet UI', 'GitHub', 'Clean'],
-  },
-  icecream: {
-    className: 'icecream',
-    metrics: ['Team', 'Vite', 'Landing'],
-  },
-}
-
 export const workflowSteps = ['idea', 'research', 'prototyping', 'design', 'development', 'optimization', 'deployment']

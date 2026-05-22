@@ -1,0 +1,449 @@
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: auto;
+  height: auto;
+  contain: layout paint size;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(255, 255, 255, 0.09), transparent 31rem),
+    linear-gradient(180deg, #101011 0%, #070708 48%, #0d0d0e 100%);
+  transition: background 520ms ease;
+}
+
+.atmosphere::before,
+.atmosphere::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+}
+
+.atmosphere::before {
+  opacity: 0.3;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.065), transparent 30rem),
+    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.032), transparent 18rem);
+  filter: blur(4px);
+  animation: centerBreath 12s ease-in-out infinite;
+}
+
+.atmosphere::after {
+  opacity: 0.28;
+  background:
+    radial-gradient(ellipse at 50% 48%, transparent 0 36%, rgba(0, 0, 0, 0.38) 82%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.48), transparent 26%, transparent 74%, rgba(0, 0, 0, 0.5));
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.28;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.085) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.075) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 72%, transparent);
+  animation: gridDrift 22s linear infinite;
+  transition: opacity 640ms ease;
+}
+
+.lightCurtain,
+.stageShutters,
+.luminousHeart,
+.haloRings,
+.specularSweep,
+.glassFrame {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 520ms cubic-bezier(0.2, 0.8, 0.18, 1);
+}
+
+.lightCurtain {
+  background:
+    linear-gradient(112deg, transparent 0 19%, rgba(255, 255, 255, 0.2) 28%, transparent 38% 52%, rgba(255, 255, 255, 0.14) 64%, transparent 78%),
+    linear-gradient(68deg, transparent 0 22%, rgba(255, 255, 255, 0.08) 35%, transparent 48%);
+  filter: blur(18px);
+  transform: scale(1.14);
+  animation: curtainDrift 18s ease-in-out infinite;
+}
+
+.luminousHeart {
+  inset: 50% auto auto 50%;
+  width: min(62rem, 88vw);
+  height: min(38rem, 62vh);
+  border-radius: 999px;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.92), rgba(248, 246, 236, 0.56) 32%, rgba(202, 202, 194, 0.2) 56%, transparent 72%);
+  filter: blur(22px);
+  transform: translate(-50%, -50%);
+  animation: heartBreath 10s ease-in-out infinite;
+}
+
+.stageShutters {
+  background:
+    linear-gradient(90deg, rgba(28, 30, 31, 0.72), transparent 18% 82%, rgba(28, 30, 31, 0.74)),
+    linear-gradient(180deg, rgba(38, 39, 40, 0.44), transparent 20% 72%, rgba(38, 39, 40, 0.5));
+  filter: blur(10px);
+}
+
+.haloRings {
+  inset: 50% auto auto 50%;
+  width: min(48rem, 78vw);
+  height: min(48rem, 78vw);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, transparent 0 36%, rgba(255, 255, 255, 0.42) 36.2% 36.5%, transparent 36.8% 54%, rgba(255, 255, 255, 0.24) 54.2% 54.5%, transparent 54.8%),
+    conic-gradient(from 18deg, transparent 0 14%, rgba(255, 255, 255, 0.28) 18%, transparent 24% 58%, rgba(255, 255, 255, 0.18) 64%, transparent 72%);
+  filter: blur(0.2px);
+  transform: translate(-50%, -50%);
+  animation: ringRotate 28s linear infinite;
+}
+
+.specularSweep {
+  inset: -20% auto -20% 43%;
+  width: 22vw;
+  min-width: 16rem;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.36), transparent);
+  filter: blur(28px);
+  transform: rotate(11deg) translateX(-18vw);
+  animation: sweepLight 16s ease-in-out infinite;
+}
+
+.glassFrame {
+  inset: clamp(1rem, 2vw, 1.8rem);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: clamp(1.4rem, 3vw, 2.8rem);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.16), transparent 18% 82%, rgba(255, 255, 255, 0.16)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 18% 82%, rgba(255, 255, 255, 0.1));
+  mask-image: linear-gradient(#000, #000), radial-gradient(ellipse at 50% 50%, transparent 0 54%, #000 76%);
+  mask-composite: exclude;
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  mix-blend-mode: screen;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.7) 0 1px, transparent 1px),
+    radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.5) 0 1px, transparent 1px),
+    radial-gradient(circle at 35% 80%, rgba(255, 255, 255, 0.4) 0 1px, transparent 1px);
+  background-size: 110px 120px, 150px 130px, 170px 160px;
+}
+
+.light {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(78px);
+  transform: translate3d(0, 0, 0);
+  opacity: 0.42;
+}
+
+.lightOne {
+  top: 5%;
+  left: 0;
+  width: min(28rem, 64vw);
+  height: min(28rem, 64vw);
+  background: rgba(255, 255, 255, 0.095);
+  animation: floatGlow 13s ease-in-out infinite;
+}
+
+.lightTwo {
+  top: 22%;
+  right: 0;
+  width: min(34rem, 74vw);
+  height: 34rem;
+  background: rgba(176, 176, 176, 0.085);
+  animation: floatGlow 16s ease-in-out infinite reverse;
+}
+
+.lightThree {
+  bottom: -13rem;
+  right: 0;
+  width: min(38rem, 78vw);
+  height: min(38rem, 78vw);
+  background: rgba(255, 255, 255, 0.058);
+  animation: glowPulse 9s ease-in-out infinite;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.72), transparent 22%, transparent 78%, rgba(0, 0, 0, 0.74)),
+    radial-gradient(circle at 50% 45%, transparent 0, rgba(0, 0, 0, 0.76) 84%);
+}
+
+.lite {
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.07), transparent 24rem),
+    linear-gradient(180deg, #101011 0%, #070708 52%, #0d0d0e 100%);
+}
+
+.lite .grid {
+  opacity: 0.14;
+  animation: none;
+}
+
+.lite .light {
+  filter: blur(36px);
+  opacity: 0.22;
+  animation: none;
+}
+
+.lite .noise {
+  opacity: 0.05;
+}
+
+.lite .vignette {
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.64), transparent 28%, transparent 72%, rgba(0, 0, 0, 0.66)),
+    radial-gradient(circle at 50% 42%, transparent 0, rgba(0, 0, 0, 0.7) 86%);
+}
+
+:global(html[data-theme='light']) .atmosphere {
+  background:
+    radial-gradient(ellipse at 50% 42%, rgba(249, 248, 242, 0.98) 0 12%, rgba(238, 238, 232, 0.94) 28%, rgba(213, 213, 207, 0.78) 48%, rgba(139, 139, 137, 0.72) 78%, rgba(74, 76, 78, 0.88) 100%),
+    linear-gradient(180deg, #d9d9d4 0%, #eeeeea 45%, #9b9c9c 100%);
+}
+
+:global(html[data-theme='light']) .atmosphere::before {
+  opacity: 0.86;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(255, 255, 250, 0.96), rgba(246, 244, 235, 0.68) 18rem, transparent 35rem),
+    radial-gradient(circle at 48% 38%, rgba(255, 255, 255, 0.54), transparent 18rem);
+  filter: blur(14px);
+}
+
+:global(html[data-theme='light']) .atmosphere::after {
+  opacity: 0.78;
+  background:
+    radial-gradient(ellipse at 50% 45%, transparent 0 28%, rgba(112, 112, 110, 0.24) 58%, rgba(48, 50, 52, 0.72) 100%),
+    linear-gradient(90deg, rgba(45, 48, 50, 0.72), transparent 22%, transparent 78%, rgba(45, 48, 50, 0.76)),
+    linear-gradient(180deg, rgba(58, 60, 62, 0.42), transparent 18%, transparent 74%, rgba(58, 60, 62, 0.56));
+}
+
+:global(html[data-theme='light']) .grid {
+  opacity: 0;
+}
+
+:global(html[data-theme='light']) .lightCurtain {
+  opacity: 0.72;
+  mix-blend-mode: screen;
+}
+
+:global(html[data-theme='light']) .stageShutters {
+  opacity: 0.95;
+  mix-blend-mode: multiply;
+}
+
+:global(html[data-theme='light']) .luminousHeart {
+  opacity: 0.94;
+  mix-blend-mode: screen;
+}
+
+:global(html[data-theme='light']) .haloRings {
+  opacity: 0.55;
+  mix-blend-mode: screen;
+}
+
+:global(html[data-theme='light']) .specularSweep {
+  opacity: 0.38;
+  mix-blend-mode: screen;
+}
+
+:global(html[data-theme='light']) .glassFrame {
+  opacity: 0.52;
+}
+
+:global(html[data-theme='light']) .noise {
+  opacity: 0.09;
+  mix-blend-mode: multiply;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(40, 40, 40, 0.34) 0 1px, transparent 1px),
+    radial-gradient(circle at 72% 34%, rgba(40, 40, 40, 0.25) 0 1px, transparent 1px),
+    radial-gradient(circle at 38% 82%, rgba(40, 40, 40, 0.2) 0 1px, transparent 1px);
+}
+
+:global(html[data-theme='light']) .light {
+  filter: blur(110px);
+  opacity: 0.78;
+}
+
+:global(html[data-theme='light']) .lightOne {
+  top: -12%;
+  left: 26%;
+  width: min(42rem, 80vw);
+  height: min(42rem, 80vw);
+  background: rgba(255, 255, 250, 0.88);
+}
+
+:global(html[data-theme='light']) .lightTwo {
+  top: 23%;
+  right: 7%;
+  background: rgba(194, 194, 188, 0.5);
+}
+
+:global(html[data-theme='light']) .lightThree {
+  bottom: -22rem;
+  right: 22%;
+  width: min(46rem, 86vw);
+  height: min(46rem, 86vw);
+  background: rgba(255, 255, 246, 0.58);
+}
+
+:global(html[data-theme='light']) .vignette {
+  background:
+    radial-gradient(ellipse at 50% 44%, rgba(255, 255, 255, 0.14) 0, transparent 32%),
+    radial-gradient(ellipse at 50% 45%, transparent 0, rgba(86, 88, 90, 0.46) 88%),
+    linear-gradient(90deg, rgba(42, 45, 47, 0.64), transparent 20%, transparent 80%, rgba(42, 45, 47, 0.66));
+}
+
+:global(html[data-theme='light']) .lite {
+  background:
+    radial-gradient(ellipse at 50% 34%, rgba(248, 248, 242, 0.95) 0 16%, rgba(222, 222, 216, 0.82) 48%, rgba(96, 98, 99, 0.82) 100%),
+    linear-gradient(180deg, #d9d9d4 0%, #eeeeea 48%, #9b9c9c 100%);
+}
+
+:global(html[data-theme='light']) .lite .light {
+  filter: blur(42px);
+  opacity: 0.42;
+}
+
+:global(html[data-theme='light']) .lite .vignette {
+  background:
+    radial-gradient(ellipse at 50% 42%, rgba(255, 255, 255, 0.1) 0, transparent 34%),
+    radial-gradient(ellipse at 50% 45%, transparent 0, rgba(76, 78, 80, 0.46) 88%),
+    linear-gradient(90deg, rgba(42, 45, 47, 0.6), transparent 22%, transparent 78%, rgba(42, 45, 47, 0.62));
+}
+
+@keyframes gridDrift {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 72px 72px;
+  }
+}
+
+@keyframes floatGlow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(2rem, -1.3rem, 0) scale(1.08);
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.24;
+    transform: scale(0.94);
+  }
+
+  50% {
+    opacity: 0.46;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes centerBreath {
+  0%,
+  100% {
+    opacity: 0.34;
+    transform: scale(0.98);
+  }
+
+  50% {
+    opacity: 0.58;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes ringRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes curtainDrift {
+  0%,
+  100% {
+    transform: translate3d(-1.2rem, 0, 0) scale(1.14);
+  }
+
+  50% {
+    transform: translate3d(1.4rem, -0.8rem, 0) scale(1.18);
+  }
+}
+
+@keyframes heartBreath {
+  0%,
+  100% {
+    filter: blur(22px);
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+
+  50% {
+    filter: blur(28px);
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+
+@keyframes sweepLight {
+  0%,
+  100% {
+    transform: rotate(11deg) translateX(-24vw);
+    opacity: 0.22;
+  }
+
+  48%,
+  58% {
+    transform: rotate(11deg) translateX(24vw);
+    opacity: 0.56;
+  }
+}
+
+@media (max-width: 620px) {
+  .atmosphere::before {
+    opacity: 0.08;
+  }
+
+  .light {
+    opacity: 0.16;
+  }
+
+  :global(html[data-theme='light']) .stageShutters {
+    opacity: 0.58;
+  }
+
+  :global(html[data-theme='light']) .haloRings {
+    opacity: 0.22;
+    transform: translate(-50%, -50%) scale(0.82);
+  }
+
+  :global(html[data-theme='light']) .lightCurtain,
+  :global(html[data-theme='light']) .specularSweep {
+    opacity: 0.18;
+  }
+
+  :global(html[data-theme='light']) .luminousHeart {
+    opacity: 0.72;
+    width: 38rem;
+    height: 24rem;
+  }
+}

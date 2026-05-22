@@ -1,0 +1,226 @@
+.preview {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--border-1);
+  border-radius: 1rem;
+  background: rgba(9, 9, 10, 0.92);
+}
+
+.preview::before {
+  position: absolute;
+  inset: -25% -10% auto;
+  height: 14rem;
+  content: '';
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.16), transparent 64%);
+  filter: blur(18px);
+}
+
+.browser {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 0.42rem;
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border-1);
+  background: var(--surface-1);
+}
+
+.browser span {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.canvas {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 7.5rem;
+  gap: 0.7rem;
+  min-height: clamp(10.5rem, 24vh, 15rem);
+  padding: 0.85rem;
+}
+
+.heroLine,
+.titleLine,
+.smallLine {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.heroLine {
+  grid-column: 1 / -1;
+  width: 46%;
+}
+
+.titleLine {
+  width: 76%;
+  margin-top: 0.55rem;
+}
+
+.smallLine {
+  width: 38%;
+  margin-top: 0.15rem;
+  opacity: 0.55;
+}
+
+.imageBlock {
+  position: relative;
+  display: grid;
+  grid-row: span 2;
+  min-height: 6.5rem;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--border-1);
+  border-radius: 0.75rem;
+  background: transparent;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.imageBlock::before {
+  display: none;
+}
+
+.imageBlock img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 1.2rem 2rem rgba(0, 0, 0, 0.5));
+  transition:
+    transform 260ms ease,
+    filter 260ms ease;
+}
+
+.preview:hover .imageBlock img {
+  transform: translateY(-0.25rem) scale(1.035);
+  filter:
+    drop-shadow(0 1.5rem 2.4rem rgba(0, 0, 0, 0.58))
+    drop-shadow(0 0 1.5rem rgba(255, 255, 255, 0.08));
+}
+
+.sidePanel {
+  display: grid;
+  gap: 0.55rem;
+  align-content: end;
+}
+
+.sidePanel span {
+  padding: 0.62rem 0.7rem;
+  border: 1px solid var(--border-1);
+  border-radius: 0.65rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--surface-1);
+}
+
+:global(html[data-theme='light']) .preview {
+  background:
+    radial-gradient(circle at 50% 0, rgba(255, 255, 255, 0.72), transparent 55%),
+    rgba(232, 232, 232, 0.72);
+}
+
+:global(html[data-theme='light']) .browser span {
+  background: rgba(26, 26, 26, 0.28);
+}
+
+:global(html[data-theme='light']) .heroLine,
+:global(html[data-theme='light']) .titleLine,
+:global(html[data-theme='light']) .smallLine {
+  background: rgba(26, 26, 26, 0.26);
+}
+
+:global(html[data-theme='light']) .imageBlock {
+  background: transparent;
+}
+
+:global(html[data-theme='light']) .imageBlock::before {
+  display: none;
+}
+
+:global(html[data-theme='light']) .sidePanel span {
+  color: var(--color-soft);
+}
+
+:global(html[data-theme='light']) .luxecoat .imageBlock,
+:global(html[data-theme='light']) .marshmallows .imageBlock,
+:global(html[data-theme='light']) .icecream .imageBlock {
+  background: transparent;
+}
+
+.luxecoat .imageBlock {
+  background: transparent;
+}
+
+.luxecoat .imageBlock img {
+  width: min(92%, 20rem);
+  height: min(92%, 13rem);
+}
+
+.marshmallows .imageBlock {
+  background: transparent;
+}
+
+.marshmallows .imageBlock img {
+  width: min(86%, 16rem);
+}
+
+.icecream .imageBlock {
+  background: transparent;
+}
+
+.icecream .imageBlock img {
+  width: min(88%, 17rem);
+}
+
+:global(html[data-theme='light']) .luxecoat .imageBlock,
+:global(html[data-theme='light']) .marshmallows .imageBlock,
+:global(html[data-theme='light']) .icecream .imageBlock {
+  background: transparent;
+}
+
+:global(html[data-theme='light']) .imageBlock img {
+  mix-blend-mode: screen;
+  filter:
+    contrast(1.08)
+    saturate(1.08)
+    drop-shadow(0 1.2rem 1.8rem rgba(34, 34, 34, 0.16));
+}
+
+@media (max-width: 520px) {
+  .preview {
+    min-height: auto;
+  }
+
+  .canvas {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+    min-height: auto;
+    padding: 0.75rem;
+  }
+
+  .imageBlock {
+    min-height: 11rem;
+  }
+
+  .sidePanel {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.4rem;
+  }
+
+  .sidePanel span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2rem;
+    padding: 0.45rem 0.35rem;
+    text-align: center;
+  }
+}

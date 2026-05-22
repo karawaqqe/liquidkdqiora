@@ -11,9 +11,11 @@ export const translations = {
         'Projektuję nowoczesne strony, responsywne interfejsy i premium user experience, łącząc estetykę, wydajność i świadome użycie AI w workflow.',
       primary: 'Zobacz projekty',
       secondary: 'Napisz do mnie',
-      cardLabel: 'Available for selective projects',
-      cardTitle: 'Frontend crafted with taste, motion and performance.',
-      cardMeta: 'React / UX / AI-assisted workflow',
+      cardLabel: 'Dostępny dla wybranych projektów',
+      cardTitle: 'Frontend tworzony ze smakiem, ruchem i wydajnością.',
+      cardMeta: 'React / UX / workflow wspierany AI',
+      cardFooterLeft: '2026',
+      cardFooterRight: 'Zdalnie / EU',
     },
     about: {
       eyebrow: 'O mnie',
@@ -25,9 +27,9 @@ export const translations = {
       ai:
         'Wykorzystuję nowoczesne narzędzia AI oraz agentów AI do researchu, prototypowania, nauki, optymalizacji i generowania kierunków kreatywnych. To przyspiesza workflow i pozwala szybciej testować idee, ale decyzje projektowe i finalne wykonanie pozostają świadome, dopracowane i autorskie.',
       stats: [
-        ['01', 'Design-sensitive frontend'],
-        ['02', 'Responsive production UI'],
-        ['03', 'AI-assisted research flow'],
+        ['01', 'Frontend z wyczuciem designu'],
+        ['02', 'Responsywny UI produkcyjny'],
+        ['03', 'Research wspierany AI'],
       ],
     },
     skills: {
@@ -35,10 +37,10 @@ export const translations = {
       title: 'Technologie, które pozwalają budować szybko, czysto i z charakterem.',
     },
     projects: {
-      eyebrow: 'Real projects',
+      eyebrow: 'Realne projekty',
       title: 'Projekty, które pokazują pracę z marką/trening.',
-      cta: 'Open Project',
-      sourceCta: 'Source',
+      cta: 'Otwórz projekt',
+      sourceCta: 'Kod',
       items: [
         {
           key: 'luxecoat',
@@ -46,6 +48,7 @@ export const translations = {
           description:
             'Premium studio detailingu we Wrocławiu. Ciemny, elegancki web presence dla usługi, w której liczy się prestiż, zaufanie i pierwszy wizualny kontakt.',
           technologies: ['React', 'Vite', 'UI/UX', 'Responsive'],
+          metrics: ['Detailing', 'Wrocław', 'Premium'],
           url: 'https://www.luxecoat.wroclaw.pl/',
           sourceUrl: 'https://www.luxecoat.wroclaw.pl/',
         },
@@ -55,6 +58,7 @@ export const translations = {
           description:
             'Lekki projekt frontendowy z własnym layoutem, wizualnym rytmem i clean strukturą. Dobry przykład pracy z prezentacyjną stroną i detalem UI.',
           technologies: ['HTML', 'CSS', 'JavaScript', 'Git'],
+          metrics: ['Lekki UI', 'GitHub', 'Clean'],
           url: 'https://github.com/karawaqqe/-marshmallows',
           sourceUrl: 'https://github.com/karawaqqe/-marshmallows',
         },
@@ -64,6 +68,7 @@ export const translations = {
           description:
             'Team project zbudowany na Vite: landing dla marki ice cream z sekcjami, animacjami, responsywnością i pracą w strukturze zespołowej.',
           technologies: ['Vite', 'JavaScript', 'Swiper', 'Teamwork'],
+          metrics: ['Zespół', 'Vite', 'Landing'],
           url: 'https://github.com/AntonKashshay0310/ice-cream_team_project',
           sourceUrl: 'https://github.com/AntonKashshay0310/ice-cream_team_project',
         },
@@ -72,6 +77,8 @@ export const translations = {
     workflow: {
       eyebrow: 'Workflow',
       title: 'Proces oparty na szybkim odkrywaniu, mocnym prototypie i dopracowanym wdrożeniu.',
+      featureLabel: 'Pipeline',
+      featureTitle: 'Od sygnału do dopracowanego interfejsu',
       items: {
         idea: 'Idea',
         research: 'Research',
@@ -80,6 +87,12 @@ export const translations = {
         development: 'Development',
         optimization: 'Optimization',
         deployment: 'Deployment',
+      },
+      stageLabels: {
+        define: 'Definicja',
+        shape: 'Forma',
+        build: 'Budowa',
+        launch: 'Start',
       },
     },
     contact: {
@@ -91,7 +104,7 @@ export const translations = {
       button: 'Napisz do mnie',
     },
     contactModal: {
-      eyebrow: 'Project inquiry',
+      eyebrow: 'Zapytanie o projekt',
       title: 'Opowiedz mi o projekcie.',
       description:
         'Krótko, konkretnie, bez formalności. Wiadomość trafi na mój adres, a jeśli EmailJS nie jest jeszcze skonfigurowany, formularz otworzy gotowy e-mail.',
@@ -106,27 +119,29 @@ export const translations = {
       fallback:
         'EmailJS nie jest jeszcze skonfigurowany, dlatego otworzyłem gotową wiadomość e-mail w Twoim kliencie pocztowym.',
       error: 'Błąd podczas wysyłania',
-      options: ['Portfolio / landing', 'Business website', 'Frontend app', 'UI refresh'],
+      options: ['Portfolio / landing', 'Strona biznesowa', 'Aplikacja frontendowa', 'Odświeżenie UI'],
       directEmail: email,
     },
     footer: {
-      signature: 'Designed & built with React, motion and taste.',
-      location: 'Poland / Remote',
+      signature: 'Zaprojektowane i zbudowane w React, z ruchem i wyczuciem.',
+      location: 'Polska / Zdalnie',
     },
   },
   ru: {
     nav: ['Обо мне', 'Навыки', 'Проекты', 'Workflow', 'Контакты'],
     hero: {
-      eyebrow: 'Frontend Developer / UI-minded builder',
+      eyebrow: 'Frontend-разработчик / UI-minded builder',
       title: 'Создаю быстрые сайты и web-приложения',
       subtitle: 'Frontend Developer • React • Vite • Next.js • Node.js',
       description:
         'Разрабатываю современные сайты, адаптивные интерфейсы и premium user experience, соединяя эстетику, скорость и осознанное использование AI в workflow.',
       primary: 'Смотреть проекты',
       secondary: 'Написать мне',
-      cardLabel: 'Open for selective projects',
-      cardTitle: 'Frontend with taste, motion and performance.',
-      cardMeta: 'React / UX / AI-assisted workflow',
+      cardLabel: 'Доступен для выбранных проектов',
+      cardTitle: 'Frontend со вкусом, движением и производительностью.',
+      cardMeta: 'React / UX / workflow с поддержкой AI',
+      cardFooterLeft: '2026',
+      cardFooterRight: 'Удаленно / EU',
     },
     about: {
       eyebrow: 'Обо мне',
@@ -138,9 +153,9 @@ export const translations = {
       ai:
         'Использую современные AI-инструменты и AI-агентов для research, прототипирования, обучения, оптимизации и генерации идей. Это ускоряет workflow и помогает быстрее тестировать направления, но проектные решения и финальная реализация остаются осознанными, аккуратными и авторскими.',
       stats: [
-        ['01', 'Design-sensitive frontend'],
-        ['02', 'Responsive production UI'],
-        ['03', 'AI-assisted research flow'],
+        ['01', 'Frontend с чувством дизайна'],
+        ['02', 'Адаптивный production UI'],
+        ['03', 'Research с поддержкой AI'],
       ],
     },
     skills: {
@@ -148,10 +163,10 @@ export const translations = {
       title: 'Технологии, с которыми можно строить быстро, чисто и характерно.',
     },
     projects: {
-      eyebrow: 'Real projects',
+      eyebrow: 'Реальные проекты',
       title: 'Мои проекты: брендинг, frontend, адаптив и аккуратная визуальная подача.',
-      cta: 'Open Project',
-      sourceCta: 'Source',
+      cta: 'Открыть проект',
+      sourceCta: 'Код',
       items: [
         {
           key: 'luxecoat',
@@ -159,6 +174,7 @@ export const translations = {
           description:
             'Premium detailing studio во Вроцлаве. Темный, уверенный web presence для сервиса, где важны престиж, доверие и сильный первый контакт.',
           technologies: ['React', 'Vite', 'UI/UX', 'Responsive'],
+          metrics: ['Detailing', 'Вроцлав', 'Premium'],
           url: 'https://www.luxecoat.wroclaw.pl/',
           sourceUrl: 'https://www.luxecoat.wroclaw.pl/',
         },
@@ -168,6 +184,7 @@ export const translations = {
           description:
             'Легкий frontend-проект с собственным layout, визуальным ритмом и clean-структурой. Хороший пример работы с презентационной страницей и UI-деталями.',
           technologies: ['HTML', 'CSS', 'JavaScript', 'Git'],
+          metrics: ['Легкий UI', 'GitHub', 'Clean'],
           url: 'https://github.com/karawaqqe/-marshmallows',
           sourceUrl: 'https://github.com/karawaqqe/-marshmallows',
         },
@@ -177,6 +194,7 @@ export const translations = {
           description:
             'Командный проект на Vite: landing для ice cream бренда с секциями, анимациями, адаптивностью и опытом работы в team workflow.',
           technologies: ['Vite', 'JavaScript', 'Swiper', 'Teamwork'],
+          metrics: ['Команда', 'Vite', 'Landing'],
           url: 'https://github.com/AntonKashshay0310/ice-cream_team_project',
           sourceUrl: 'https://github.com/AntonKashshay0310/ice-cream_team_project',
         },
@@ -185,14 +203,22 @@ export const translations = {
     workflow: {
       eyebrow: 'Workflow',
       title: 'Процесс построен на быстром исследовании, сильном прототипе и аккуратном запуске.',
+      featureLabel: 'Pipeline',
+      featureTitle: 'От идеи до готового интерфейса',
       items: {
         idea: 'Идея',
-        research: 'Research',
-        prototyping: 'Prototyping',
-        design: 'Design',
-        development: 'Development',
-        optimization: 'Optimization',
-        deployment: 'Deployment',
+        research: 'Исследование',
+        prototyping: 'Прототип',
+        design: 'Дизайн',
+        development: 'Разработка',
+        optimization: 'Оптимизация',
+        deployment: 'Запуск',
+      },
+      stageLabels: {
+        define: 'Определение',
+        shape: 'Форма',
+        build: 'Сборка',
+        launch: 'Запуск',
       },
     },
     contact: {
@@ -204,7 +230,7 @@ export const translations = {
       button: 'Написать мне',
     },
     contactModal: {
-      eyebrow: 'Project inquiry',
+      eyebrow: 'Запрос проекта',
       title: 'Расскажите мне о проекте.',
       description:
         'Коротко, конкретно, без лишней бюрократии. Сообщение уйдет на мою почту, а если EmailJS еще не настроен, форма откроет готовый e-mail.',
@@ -219,12 +245,12 @@ export const translations = {
       fallback:
         'EmailJS еще не настроен, поэтому я открыл готовое письмо в вашем почтовом клиенте.',
       error: 'Не получилось отправить через EmailJS. Попробуйте еще раз или напишите напрямую на почту.',
-      options: ['Portfolio / landing', 'Business website', 'Frontend app', 'UI refresh'],
+      options: ['Портфолио / landing', 'Бизнес-сайт', 'Frontend-приложение', 'Обновление UI'],
       directEmail: email,
     },
     footer: {
-      signature: 'Designed & built with React, motion and taste.',
-      location: 'Poland / Remote',
+      signature: 'Спроектировано и собрано на React, с движением и вкусом.',
+      location: 'Польша / Удаленно',
     },
   },
 }

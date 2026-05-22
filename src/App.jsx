@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { PortfolioPage } from './pages/PortfolioPage'
-import { Loader } from './components/Loader'
-import { CustomCursor } from './components/CustomCursor'
-import { BackgroundAtmosphere } from './components/BackgroundAtmosphere'
-import { ThemeTransition } from './components/ThemeTransition'
+import { Loader } from './components/ui/loader/Loader'
+import { CustomCursor } from './components/ui/custom-cursor/CustomCursor'
+import { BackgroundAtmosphere } from './components/ui/background-atmosphere/BackgroundAtmosphere'
+import { ThemeTransition } from './components/ui/theme-transition/ThemeTransition'
 import { translations } from './data/translations'
-import './styles/global.css'
 
 function App() {
   const [language, setLanguage] = useState('pl')

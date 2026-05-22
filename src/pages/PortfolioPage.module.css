@@ -182,6 +182,7 @@
     left: auto;
     display: flex;
     transform: none;
+    backdrop-filter: none;
   }
 
   .sideNav button {
@@ -204,17 +205,5 @@
 
   .scrollHint {
     display: none;
-  }
-}
-
-@media (pointer: coarse) {
-  .scroller {
-    display: block;
-    height: 100svh;
-    overflow-x: hidden;
-    overflow-y: auto;
-    scroll-behavior: auto;
-    scroll-snap-type: none;
-    touch-action: pan-y;
   }
 }

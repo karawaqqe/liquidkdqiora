@@ -1,21 +1,24 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Header } from '../components/Header'
-import { Hero } from '../components/Hero'
-import { About } from '../components/About'
-import { Skills } from '../components/Skills'
-import { Projects } from '../components/Projects'
-import { Workflow } from '../components/Workflow'
-import { Contact } from '../components/Contact'
-import { ContactModal } from '../components/ContactModal'
-import { Footer } from '../components/Footer'
+import { Header } from '../components/header/Header'
+import { Hero } from '../components/hero/Hero'
+import { About } from '../components/about/About'
+import { Skills } from '../components/skills/Skills'
+import { Projects } from '../components/projects/Projects'
+import { Workflow } from '../components/workflow/Workflow'
+import { Contact } from '../components/contact/Contact'
+import { ContactModal } from '../components/contact/ContactModal'
+import { Footer } from '../components/footer/Footer'
+import { useMediaQuery } from '../hooks/useMediaQuery'
 import styles from './PortfolioPage.module.css'
 
 export function PortfolioPage({ copy, language, theme, onLanguageChange, onThemeChange }) {
   const [isContactOpen, setIsContactOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
+  const isMobileLayout = useMediaQuery('(max-width: 900px)', false)
   const scrollerRef = useRef(null)
   const wheelIntentRef = useRef(0)
   const wheelLockRef = useRef(false)
+  const frameRef = useRef(null)
 
   const scenes = useMemo(
     () => [
@@ -36,15 +39,15 @@ export function PortfolioPage({ copy, language, theme, onLanguageChange, onTheme
         return
       }
 
-      const isMobile = window.matchMedia('(max-width: 900px)').matches
       const nextIndex = Math.min(Math.max(index, 0), scenes.length - 1)
+      setActiveIndex(nextIndex)
       scroller.scrollTo({
-        left: isMobile ? 0 : nextIndex * scroller.clientWidth,
-        top: isMobile ? nextIndex * scroller.clientHeight : 0,
+        left: isMobileLayout ? 0 : nextIndex * scroller.clientWidth,
+        top: isMobileLayout ? nextIndex * scroller.clientHeight : 0,
         behavior: 'smooth',
       })
     },
-    [scenes.length],
+    [isMobileLayout, scenes.length],
   )
 
   useEffect(() => {
@@ -54,22 +57,36 @@ export function PortfolioPage({ copy, language, theme, onLanguageChange, onTheme
     }
 
     const updateActiveScene = () => {
-      const isMobile = window.matchMedia('(max-width: 900px)').matches
-      const position = isMobile ? scroller.scrollTop : scroller.scrollLeft
-      const size = isMobile ? scroller.clientHeight : scroller.clientWidth
+      const position = isMobileLayout ? scroller.scrollTop : scroller.scrollLeft
+      const size = isMobileLayout ? scroller.clientHeight : scroller.clientWidth
       const nextIndex = Math.round(position / Math.max(size, 1))
       setActiveIndex(Math.min(Math.max(nextIndex, 0), scenes.length - 1))
     }
 
-    updateActiveScene()
-    scroller.addEventListener('scroll', updateActiveScene, { passive: true })
+    const requestActiveSceneUpdate = () => {
+      if (frameRef.current) {
+        return
+      }
+
+      frameRef.current = window.requestAnimationFrame(() => {
+        frameRef.current = null
+        updateActiveScene()
+      })
+    }
+
+    requestActiveSceneUpdate()
+    scroller.addEventListener('scroll', requestActiveSceneUpdate, { passive: true })
     window.addEventListener('resize', updateActiveScene)
 
     return () => {
-      scroller.removeEventListener('scroll', updateActiveScene)
+      if (frameRef.current) {
+        window.cancelAnimationFrame(frameRef.current)
+      }
+
+      scroller.removeEventListener('scroll', requestActiveSceneUpdate)
       window.removeEventListener('resize', updateActiveScene)
     }
-  }, [scenes.length])
+  }, [isMobileLayout, scenes.length])
 
   useEffect(() => {
     const scroller = scrollerRef.current
@@ -78,23 +95,11 @@ export function PortfolioPage({ copy, language, theme, onLanguageChange, onTheme
     }
 
     const handleNativeWheel = (event) => {
-      if (window.matchMedia('(max-width: 900px)').matches || Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+      if (isMobileLayout || Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
         return
       }
 
       if (event.target.closest('[role="dialog"], textarea, select, input')) {
-        return
-      }
-
-      const activeScene = scroller.children[activeIndex]
-      const canScrollScene =
-        activeScene &&
-        window.matchMedia('(max-width: 900px)').matches &&
-        activeScene.scrollHeight > activeScene.clientHeight + 2 &&
-        ((event.deltaY > 0 && activeScene.scrollTop < activeScene.scrollHeight - activeScene.clientHeight - 2) ||
-          (event.deltaY < 0 && activeScene.scrollTop > 2))
-
-      if (canScrollScene) {
         return
       }
 
@@ -111,21 +116,28 @@ export function PortfolioPage({ copy, language, theme, onLanguageChange, onTheme
       }
 
       const direction = wheelIntentRef.current > 0 ? 1 : -1
+      const currentIndex = Math.round(scroller.scrollLeft / Math.max(scroller.clientWidth, 1))
+      const nextIndex = Math.min(Math.max(currentIndex + direction, 0), scenes.length - 1)
       wheelIntentRef.current = 0
+
+      if (nextIndex === currentIndex) {
+        return
+      }
+
       wheelLockRef.current = true
-      scrollToScene(activeIndex + direction)
+      scrollToScene(nextIndex)
 
       window.setTimeout(() => {
         wheelLockRef.current = false
-      }, 620)
+      }, 520)
     }
 
-    scroller.addEventListener('wheel', handleNativeWheel, { passive: false })
+    window.addEventListener('wheel', handleNativeWheel, { passive: false })
 
     return () => {
-      scroller.removeEventListener('wheel', handleNativeWheel)
+      window.removeEventListener('wheel', handleNativeWheel)
     }
-  }, [activeIndex, scrollToScene])
+  }, [isMobileLayout, scenes.length, scrollToScene])
 
   return (
     <div className={styles.page}>
