@@ -7,12 +7,14 @@ const emailJsConfig = {
 }
 
 export function hasEmailJsConfig() {
-  return Boolean(emailJsConfig.serviceId && emailJsConfig.templateId && emailJsConfig.publicKey)
+  return Object.values(emailJsConfig).every((value) => Boolean(value && !value.startsWith('your_')))
 }
 
 export async function sendContactMessage(values, targetEmail) {
+  const message = normalizeMessage(values)
+
   if (!hasEmailJsConfig()) {
-    openMailClient(values, targetEmail)
+    openMailClient(message, targetEmail)
     return { mode: 'fallback' }
   }
 
@@ -27,11 +29,13 @@ export async function sendContactMessage(values, targetEmail) {
       user_id: emailJsConfig.publicKey,
       template_params: {
         to_email: targetEmail,
-        from_name: values.name,
-        from_email: values.email,
-        reply_to: values.email,
-        project_type: values.projectType,
-        message: values.message,
+        from_name: message.name,
+        from_email: message.email,
+        reply_to: message.email,
+        project_type: message.projectType,
+        message: message.message,
+        subject: `Portfolio inquiry: ${message.projectType}`,
+        site_url: window.location.href,
       },
     }),
   })
@@ -50,4 +54,13 @@ function openMailClient(values, targetEmail) {
   )
 
   window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`
+}
+
+function normalizeMessage(values) {
+  return {
+    name: values.name.trim(),
+    email: values.email.trim(),
+    projectType: values.projectType.trim(),
+    message: values.message.trim(),
+  }
 }

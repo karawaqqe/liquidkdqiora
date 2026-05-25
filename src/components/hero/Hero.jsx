@@ -1,7 +1,7 @@
 import { motion, useMotionTemplate, useMotionValue, useTransform } from 'framer-motion'
 import { useMediaQuery } from '../../hooks/useMediaQuery'
 import { MagneticButton } from '../ui/magnetic-button/MagneticButton'
-import portraitImage from '../../assets/me.jpg'
+import portraitImage from '../../assets/ja.jpg'
 import styles from './hero.module.css'
 
 const container = {
