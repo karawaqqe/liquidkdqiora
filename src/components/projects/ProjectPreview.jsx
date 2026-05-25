@@ -1,7 +1,7 @@
 import styles from './projectPreview.module.css'
-import icecreamImage from '../../assets/projects/icecream.jpg'
-import luxecoatImage from '../../assets/projects/luxecoat.jpg'
-import marshmallowsImage from '../../assets/projects/marshmallows.jpg'
+import icecreamImage from '../../assets/projects/icecream-cutout.png'
+import luxecoatImage from '../../assets/projects/luxecoat-cutout.png'
+import marshmallowsImage from '../../assets/projects/marshmallows-cutout.png'
 
 const projectImages = {
   icecream: icecreamImage,

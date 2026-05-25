@@ -41,9 +41,15 @@ export function PortfolioPage({ copy, language, theme, onLanguageChange, onTheme
 
       const nextIndex = Math.min(Math.max(index, 0), scenes.length - 1)
       setActiveIndex(nextIndex)
+      const targetScene = scroller.children[nextIndex]
+      const mobileTop =
+        nextIndex === scenes.length - 1
+          ? Math.max(scroller.scrollHeight - scroller.clientHeight, 0)
+          : targetScene?.offsetTop || nextIndex * scroller.clientHeight
+
       scroller.scrollTo({
         left: isMobileLayout ? 0 : nextIndex * scroller.clientWidth,
-        top: isMobileLayout ? nextIndex * scroller.clientHeight : 0,
+        top: isMobileLayout ? mobileTop : 0,
         behavior: 'smooth',
       })
     },
@@ -57,9 +63,14 @@ export function PortfolioPage({ copy, language, theme, onLanguageChange, onTheme
     }
 
     const updateActiveScene = () => {
-      const position = isMobileLayout ? scroller.scrollTop : scroller.scrollLeft
-      const size = isMobileLayout ? scroller.clientHeight : scroller.clientWidth
-      const nextIndex = Math.round(position / Math.max(size, 1))
+      const nextIndex = isMobileLayout
+        ? Array.from(scroller.children).reduce((closestIndex, child, index) => {
+            const currentDistance = Math.abs(child.offsetTop - scroller.scrollTop)
+            const closestDistance = Math.abs(scroller.children[closestIndex].offsetTop - scroller.scrollTop)
+            return currentDistance < closestDistance ? index : closestIndex
+          }, 0)
+        : Math.round(scroller.scrollLeft / Math.max(scroller.clientWidth, 1))
+
       setActiveIndex(Math.min(Math.max(nextIndex, 0), scenes.length - 1))
     }
 
